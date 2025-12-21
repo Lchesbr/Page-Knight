@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 10.0f;
     public float pushback = 5.0f;
     public bool isOnPlatform = true;
+    public bool isSwamped = false;
     private float moveHorizontal;
     public float gravityMod;
     public float leftBound;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
         {
             isOnPlatform = false;
+            isSwamped = false;
             playerRb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         } 
 
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (waitingForCamera == false)
+        if (waitingForCamera == false && isSwamped == false)
         {
             speed = 10.0f;
             
@@ -63,6 +65,10 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        if(isSwamped)
+        {
+            speed = 4.5f;
+        }
         
         moveHorizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * moveHorizontal * speed * Time.deltaTime);
@@ -74,11 +80,23 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Platform"))
         {
             isOnPlatform = true;
+            isSwamped = false;
         }
 
         if (collision.gameObject.CompareTag("Boundary"))
         {
             playerRb.AddForce(Vector3.right * pushback, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            isOnPlatform = false;
+            isSwamped = false;
+        }
+
+        if (collision.gameObject.CompareTag("Swamp"))
+        {
+            isSwamped = true;
         }
 
     }

@@ -8,6 +8,7 @@ TagManager:
   - Camera Mover
   - Boundary
   - Obstacle
+  - Swamp
   layers:
   - Default
   - TransparentFX
