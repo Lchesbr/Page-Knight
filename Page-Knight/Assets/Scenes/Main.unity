@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.030712985, y: -0, z: -0, w: 0.9995283}
-  m_LocalPosition: {x: -26.6, y: -0.15576032, z: -16.1}
+  m_LocalPosition: {x: -29.269989, y: -0.15576032, z: -16.1}
   m_LocalScale: {x: 1, y: 0.09248238, z: 1.9283977}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,14 +282,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -573,6 +573,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &792454458
 MeshFilter:
@@ -862,6 +863,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &902163381
 MeshFilter:
@@ -975,6 +977,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &903141315
 MeshFilter:
@@ -1048,7 +1051,7 @@ MonoBehaviour:
   leftBound: 0
   playerPos: 0
   waitingForCamera: 0
-  cameraWaitTime: 5
+  cameraWaitTime: 3.7
 --- !u!1 &975100218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1147,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1298,7 +1302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 5.1, y: -17.57}
+  m_AnchoredPosition: {x: 3.9, y: -17.57}
   m_SizeDelta: {x: 199.04, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219133715
@@ -1323,9 +1327,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Once upon a time, there was a page who wished to be a knight. He asked
     the knight captain to teach him, but he just laughed. "To become a knight, you'll
-    have to overcome many obstacles."  "I'll do whatever it takes!" said the page."I
-    must be a knight!" "Then, you must first climb the tallest mountain in the land.
-    ""I will!" said the page. And before he knew it he had succeeded.
+    have to overcome many obstacles." "I'll do whatever it takes!" said the page."I
+    must be a knight!" "Then, you must first climb the tallest mountain in the land." 
+    "I will!" said the page, and he set off on his arduous journey.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26d9abff8078e1c49b9be3d6cbbb41d6, type: 2}
   m_sharedMaterial: {fileID: 8577478760891837012, guid: 26d9abff8078e1c49b9be3d6cbbb41d6, type: 2}
@@ -1352,8 +1356,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.65
-  m_fontSizeBase: 1.65
+  m_fontSize: 1.72
+  m_fontSizeBase: 1.72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1363,6 +1367,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1492,6 +1497,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1401464736
 MeshFilter:
@@ -1632,6 +1638,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1553024070
 MeshFilter:
@@ -1650,7 +1657,7 @@ Transform:
   m_GameObject: {fileID: 1553024066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 494.23, y: 12.96, z: 0}
+  m_LocalPosition: {x: 497.01, y: 12.96, z: 0}
   m_LocalScale: {x: 1, y: 10.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1669,8 +1676,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8885a2bb179bb41b6aa4909f771422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveCamera
-  moveSpeed: 10.65
-  moveAmount: 51.1
+  moveSpeed: 15
+  moveAmount: 53.1
   canMove: 0
   playerController: {fileID: 0}
   originalPos: 0
@@ -1789,6 +1796,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1735101195
 MeshFilter:

@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityMod;
         playerPos = transform.position.x;
         waitingForCamera = false;
-        leftBound = cameraMover.position.x - 52.0f;
+        leftBound = cameraMover.position.x - 54.5f;
 
     }
 
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        leftBound = cameraMover.position.x - 52.0f;
+        leftBound = cameraMover.position.x - 54.5f;
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
         {
@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Swamp"))
         {
             isSwamped = true;
+            isOnPlatform = true;
         }
 
     }
