@@ -71,8 +71,15 @@ public class PlayerController : MonoBehaviour
         }
         
         moveHorizontal = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * moveHorizontal * speed * Time.deltaTime);
+        
 
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 movement = new Vector3(moveHorizontal * speed, GetComponent<Rigidbody>().linearVelocity.y, 0.0f);
+
+        playerRb.linearVelocity = movement;
     }
 
     private void OnCollisionEnter(Collision collision)
