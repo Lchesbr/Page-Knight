@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     public bool isOnPlatform = true;
     public bool isSwamped = false;
     private float moveHorizontal;
+    private float yVelocity;
     public float gravityMod;
     public float leftBound;
+    public float topBound = 17.7f;
     public float playerPos;
     public bool waitingForCamera;
     public float cameraWaitTime = 5.0f;
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         leftBound = cameraMover.position.x - 54.5f;
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
@@ -61,11 +63,18 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.x < leftBound)
         {
-            transform.position = new Vector3( leftBound, transform.position.y, transform.position.z);
+            transform.position = new Vector3(leftBound, transform.position.y, transform.position.z);
             
         }
 
-        if(isSwamped)
+        if (transform.position.y > topBound)
+        {
+            transform.position = new Vector3(transform.position.x, topBound, transform.position.z);
+            playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, 0.0f, 0.0f);
+
+        }
+
+        if (isSwamped)
         {
             speed = 4.5f;
         }
