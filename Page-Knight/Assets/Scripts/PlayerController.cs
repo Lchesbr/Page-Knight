@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.0f;
     public float jumpPower = 10.0f;
     public float pushback = 5.0f;
+    public float wallFall;
     public bool isOnPlatform = true;
     public bool isSwamped = false;
     private float moveHorizontal;
@@ -116,7 +118,21 @@ public class PlayerController : MonoBehaviour
             isOnPlatform = true;
         }
 
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, 0.0f, 0.0f);
+        }
+
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, wallFall, 0.0f);
+        }
+    }
+
     IEnumerator WaitForCamera()
     {
         while(waitingForCamera == true)
