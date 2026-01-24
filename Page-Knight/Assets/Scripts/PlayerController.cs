@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float wallFall;
     public bool isOnPlatform = true;
     public bool isSwamped = false;
+    public bool isJumping = false;
     private float moveHorizontal;
     private float yVelocity;
     public float gravityMod;
@@ -43,11 +44,9 @@ public class PlayerController : MonoBehaviour
         
         leftBound = cameraMover.position.x - 54.5f;
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform && !isJumping)
         {
-            isOnPlatform = false;
-            isSwamped = false;
-            playerRb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isJumping = true;
         } 
 
         if(waitingForCamera == true)
@@ -91,6 +90,14 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal * speed, GetComponent<Rigidbody>().linearVelocity.y, 0.0f);
 
         playerRb.linearVelocity = movement;
+
+        if (isJumping)
+        {
+            isOnPlatform = false;
+            isSwamped = false;
+            playerRb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isJumping = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
