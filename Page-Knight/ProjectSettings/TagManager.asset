@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Swamp
   - Wall
+  - Climb
   layers:
   - Default
   - TransparentFX

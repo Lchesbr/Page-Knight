@@ -13,11 +13,11 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 10.0f;
     public float pushback = 5.0f;
     public float wallFall;
+    public float climbSpeed;
     public bool isOnPlatform = true;
     public bool isSwamped = false;
     public bool isJumping = false;
     private float moveHorizontal;
-    private float yVelocity;
     public float gravityMod;
     public float leftBound;
     public float topBound = 17.7f;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         
         leftBound = cameraMover.position.x - 54.5f;
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform && !isJumping)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnPlatform && !isJumping && !waitingForCamera)
         {
             isJumping = true;
         } 
@@ -108,11 +108,6 @@ public class PlayerController : MonoBehaviour
             isSwamped = false;
         }
 
-        if (collision.gameObject.CompareTag("Boundary"))
-        {
-            playerRb.AddForce(Vector3.right * pushback, ForceMode.Impulse);
-        }
-
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             isOnPlatform = false;
@@ -130,6 +125,10 @@ public class PlayerController : MonoBehaviour
             playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, 0.0f, 0.0f);
         }
 
+        if (collision.gameObject.CompareTag("Climb"))
+        {
+            playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, 0.0f, 0.0f);
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -137,6 +136,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, wallFall, 0.0f);
+        }
+
+        if (collision.gameObject.CompareTag("Climb"))
+        {
+            playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, climbSpeed, 0.0f);
         }
     }
 
