@@ -102,12 +102,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Platform"))
-        {
-            isOnPlatform = true;
-            isSwamped = false;
-        }
-
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             isOnPlatform = false;
@@ -141,6 +135,21 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Climb"))
         {
             playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, climbSpeed, 0.0f);
+        }
+
+        if (collision.gameObject.CompareTag("Platform") && !isOnPlatform)
+        {
+            isOnPlatform = true;
+            isSwamped = false;
+        }
+
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Platform") && isOnPlatform)
+        {
+            isOnPlatform = false;
         }
     }
 
