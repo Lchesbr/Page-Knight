@@ -94,7 +94,6 @@ public class PlayerController : MonoBehaviour
         if (isJumping)
         {
             isOnPlatform = false;
-            isSwamped = false;
             playerRb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isJumping = false;
         }
@@ -105,13 +104,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             isOnPlatform = false;
-            isSwamped = false;
-        }
-
-        if (collision.gameObject.CompareTag("Swamp"))
-        {
-            isSwamped = true;
-            isOnPlatform = true;
         }
 
         if (collision.gameObject.CompareTag("Wall"))
@@ -140,7 +132,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform") && !isOnPlatform)
         {
             isOnPlatform = true;
-            isSwamped = false;
+        }
+
+        if (collision.gameObject.CompareTag("Swamp"))
+        {
+            isSwamped = true;
+        }
+
+        if (collision.gameObject.CompareTag("Swamp") && !isOnPlatform)
+        {
+            isOnPlatform = true;
         }
 
     }
@@ -151,6 +152,13 @@ public class PlayerController : MonoBehaviour
         {
             isOnPlatform = false;
         }
+
+        if (collision.gameObject.CompareTag("Swamp") && isOnPlatform)
+        {
+            isOnPlatform = false;
+            isSwamped = false;
+        }
+
     }
 
     IEnumerator WaitForCamera()
