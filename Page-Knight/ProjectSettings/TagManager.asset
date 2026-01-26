@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - Climb
   - Running
+  - Snare
   layers:
   - Default
   - TransparentFX

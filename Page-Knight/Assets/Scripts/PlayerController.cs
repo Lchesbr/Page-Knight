@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject snareGroup;
     private Rigidbody playerRb;
     private Rigidbody moveCameraRb;
     private MoveCamera moveCamera;
@@ -121,6 +122,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Climb"))
         {
             playerRb.linearVelocity = new Vector3(GetComponent<Rigidbody>().linearVelocity.x, 0.0f, 0.0f);
+        }
+
+        if (collision.gameObject.CompareTag("Snare"))
+        {
+            snareGroup.gameObject.SetActive(false);
         }
     }
 
