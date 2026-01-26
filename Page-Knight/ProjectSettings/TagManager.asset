@@ -11,6 +11,7 @@ TagManager:
   - Swamp
   - Wall
   - Climb
+  - Running
   layers:
   - Default
   - TransparentFX

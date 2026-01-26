@@ -9,14 +9,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody moveCameraRb;
     private MoveCamera moveCamera;
     private Transform cameraMover;
-    public float speed = 5.0f;
+    public float speed = 10.0f;
     public float jumpPower = 10.0f;
     public float pushback = 5.0f;
     public float wallFall;
     public float climbSpeed;
+    public float runningSpeed = 10.0f;
     public bool isOnPlatform = true;
     public bool isSwamped = false;
     public bool isJumping = false;
+    public bool isRunning = false;
     private float moveHorizontal;
     public float gravityMod;
     public float leftBound;
@@ -56,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (waitingForCamera == false && isSwamped == false)
+        if (!waitingForCamera && !isSwamped && !isRunning)
         {
             speed = 10.0f;
             
@@ -79,7 +81,12 @@ public class PlayerController : MonoBehaviour
         {
             speed = 4.5f;
         }
-        
+
+        if (isRunning)
+        {
+            speed = runningSpeed;
+        }
+
         moveHorizontal = Input.GetAxis("Horizontal");
         
 
@@ -144,6 +151,16 @@ public class PlayerController : MonoBehaviour
             isOnPlatform = true;
         }
 
+        if (collision.gameObject.CompareTag("Running") && !isOnPlatform)
+        {
+            isOnPlatform = true;
+        }
+
+        if (collision.gameObject.CompareTag("Running"))
+        {
+            isRunning = true;
+        }
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -157,6 +174,12 @@ public class PlayerController : MonoBehaviour
         {
             isOnPlatform = false;
             isSwamped = false;
+        }
+
+        if (collision.gameObject.CompareTag("Running") && isOnPlatform)
+        {
+            isOnPlatform = false;
+            isRunning = false;
         }
 
     }
