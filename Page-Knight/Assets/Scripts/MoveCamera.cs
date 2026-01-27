@@ -5,13 +5,11 @@ public class MoveCamera : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float moveAmount = 2.5f;
     public bool canMove;
-    public PlayerController playerController;
     
     public float originalPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         originalPos = GameObject.Find("Camera Mover").GetComponent<Rigidbody>().position.x;
         canMove = false;
         
@@ -39,7 +37,6 @@ public class MoveCamera : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             canMove = true;
-            playerController.waitingForCamera = true;
 
         }
     }

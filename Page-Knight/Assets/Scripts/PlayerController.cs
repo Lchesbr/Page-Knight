@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     public GameObject snareGroup;
+    public GameManager gameManager;
     private Rigidbody playerRb;
     private Rigidbody moveCameraRb;
     private MoveCamera moveCamera;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool isSwamped = false;
     public bool isJumping = false;
     public bool isRunning = false;
+    private bool isGameOver = false;
     private float moveHorizontal;
     public float gravityMod;
     public float leftBound;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         cameraMover = GameObject.Find("Camera Mover").GetComponent<Transform>();
         moveCameraRb = GameObject.Find("Camera Mover").GetComponent<Rigidbody>();
         moveCamera = GameObject.Find("Camera Mover").GetComponent<MoveCamera>();
@@ -59,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (!waitingForCamera && !isSwamped && !isRunning)
+        if (!waitingForCamera && !isSwamped && !isRunning && !isGameOver)
         {
             speed = 10.0f;
             
@@ -186,6 +189,25 @@ public class PlayerController : MonoBehaviour
         {
             isOnPlatform = false;
             isRunning = false;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Game Manager"))
+        {
+            speed = 0;
+            isGameOver = true;
+            gameManager.EndGame();
+
+        }
+
+        if (other.gameObject.CompareTag("Camera Mover"))
+        {
+            waitingForCamera = true;
+            WaitForCamera();
+
         }
 
     }
